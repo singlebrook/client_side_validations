@@ -7,11 +7,13 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
+if(window['ClientSideValidations'] === undefined) window['ClientSideValidations'] = {};
+
 (function($) {
   $.fn.validate = function() {
     return this.filter('form[data-validate]').each(function() {
       var form = $(this);
-      var settings = window[form.attr('id')];
+      var settings = window['ClientSideValidations'][form.attr('id')];
 
       // Set up the events for the form
       form
