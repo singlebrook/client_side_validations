@@ -129,8 +129,7 @@ if(window['clientSideValidations']['forms'] === undefined) window['clientSideVal
   $(function() { $('form[data-validate]').validate(); })
 })(jQuery);
 
-var clientSideValidations = {
-  validators: {
+clientSideValidations.validators = {
     all: function() { return jQuery.extend({}, clientSideValidations.validators.local, clientSideValidations.validators.remote) },
     local: {
       presence: function(element, options) {
@@ -319,8 +318,9 @@ var clientSideValidations = {
         }
       }
     }
-  },
-  formBuilders: {
+  }
+
+clientSideValidations.formBuilders = {
     'ActionView::Helpers::FormBuilder': {
       add: function(element, settings, message) {
         if (element.data('valid') !== false && jQuery('label.message[for="' + element.attr('id') + '"]')[0] == undefined) {
@@ -397,8 +397,9 @@ var clientSideValidations = {
         clientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'].remove(element, settings, message);
       }
     }
-  },
-  callbacks: {
+  }
+
+clientSideValidations.callbacks = {
     element: {
       after:  function(element, eventData)                    { },
       before: function(element, eventData)                    { },
@@ -412,4 +413,4 @@ var clientSideValidations = {
       pass:   function(form, eventData) { }
     }
   }
-};
+
